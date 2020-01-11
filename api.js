@@ -219,7 +219,7 @@ module.exports = router => {
       ctx.body = insertedGraph
     } else {
       ctx.status = 403
-      ctx.body = {"error": "Incorrect API key"}
+      ctx.body = {"error": "Incorrect API key, should be " + process.env.API_KEY}
     }
 
   })
