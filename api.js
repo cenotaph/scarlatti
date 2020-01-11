@@ -1,13 +1,16 @@
 'use strict'
-const stripe = require('stripe')('sk_test_x7T4GujU3DPn4v0GBC9KApqu00tTn3c7pz')
+
 const Book = require('./models/Book')
 const Price = require('./models/Price')
 const Rate = require('./models/Rate')
 const Order = require('./models/Order')
 const Promotion = require('./models/Promotion')
-const endpointSecret = 'whsec_fQPddzJMsS9TIEpsqxObdSDqh5LcZBVk'
 
 
+const dotenv = require('dotenv')
+dotenv.config()
+const stripe = require('stripe')(process.env.STRIPE_KEY)
+const endpointSecret = process.env.STRIPE_SECRET
 module.exports = router => {
   /**
    * Create a new Person.
