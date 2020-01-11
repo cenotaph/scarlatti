@@ -8,7 +8,8 @@ const Promotion = require('./models/Promotion')
 
 
 const dotenv = require('dotenv')
-dotenv.config()
+dotenv.config({debug: true})
+
 const stripe = require('stripe')(process.env.STRIPE_KEY)
 const endpointSecret = process.env.STRIPE_SECRET
 module.exports = router => {
@@ -203,7 +204,6 @@ module.exports = router => {
   })
 
   router.post('/api/order', async ctx => {
-
     if (ctx.request.header['authorization'] === 'Api-Key ' + process.env.API_KEY) {
       const insertedGraph = await Order.transaction(async trx => {
 
@@ -218,6 +218,7 @@ module.exports = router => {
       })
       ctx.body = insertedGraph
     } else {
+
       ctx.status = 403
       ctx.body = {"error": "Incorrect API key, should be " + process.env.API_KEY}
     }
