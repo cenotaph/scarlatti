@@ -1,0 +1,31 @@
+{
+  "name": "scarlatti-api",
+  "version": "0.0.2",
+  "description": "koa api for Scarlatti Tilt site",
+  "main": "app.js",
+  "scripts": {
+    "migrate": "knex migrate:latest",
+    "start": "node app"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "author": "John W. Fail",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/cors": "^2.2.3",
+    "axios": "^0.19.0",
+    "dotenv": "^8.2.0",
+    "knex": "^0.20.3",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-jwt": "^3.6.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-unless": "^1.0.7",
+    "objection": "2.0.3",
+    "pg": "^7.17.0",
+    "sqlite3": "^4.1.0",
+    "stripe": "^8.0.1"
+  }
+}
