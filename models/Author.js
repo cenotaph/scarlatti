@@ -2,10 +2,10 @@
 
 const { Model } = require('objection')
 
-class Book extends Model {
+class Author extends Model {
   // Table name is the only required property.
   static get tableName() {
-    return 'books'
+    return 'authors'
   }
 
   // Optional JSON schema. This is not the database schema! Nothing is generated
@@ -60,29 +60,21 @@ class Book extends Model {
   static get relationMappings() {
     // One way to prevent circular references
     // is to require the model classes here.
-    const Price = require('./Price')
-    const Author = require('./Author')
+    const Book = require('./Book')
+
     return {
       prices: {
         relation: Model.HasManyRelation,
         // The related model. This can be either a Model subclass constructor or an
         // absolute file path to a module that exports one.
-        modelClass: Price,
+        modelClass: Book,
         join: {
-          from: 'books.id',
-          to: 'prices.book_id'
+          from: 'author.id',
+          to: 'books.author_id'
         }
-      },
-      author: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: Author,
-        join: {
-          from: 'books.author_id',
-          to: 'authors.id'
-        }
-      }
+      } 
     }
   }
 }
 
-module.exports = Book
+module.exports = Author

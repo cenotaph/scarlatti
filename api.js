@@ -179,7 +179,7 @@ module.exports = router => {
   router.get('/books/:id', async ctx => {
     const query = await Book.query()
       .findById(ctx.params.id)
-      .withGraphFetched('[prices]')
+      .withGraphFetched('[prices, author]')
 
     if (ctx.query.select) {
       query.select(ctx.query.select)
